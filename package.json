@@ -1,0 +1,23 @@
+{
+  "name": "icloud-cf-mail",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "login": "wrangler login",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail",
+    "d1:create": "node scripts/create-d1.js",
+    "d1:list": "wrangler d1 list",
+    "d1:migrate": "wrangler d1 migrations apply MAIL_DB --remote",
+    "test": "node scripts/test-worker.js",
+    "check": "npm test && wrangler deploy --dry-run"
+  },
+  "dependencies": {
+    "postal-mime": "^2.7.4"
+  },
+  "devDependencies": {
+    "wrangler": "^4.85.0"
+  }
+}
