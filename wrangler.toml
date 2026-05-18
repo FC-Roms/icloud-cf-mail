@@ -1,12 +1,13 @@
 name = "icloud-cf-mail"
 main = "worker.js"
-compatibility_date = "2026-05-17"
+compatibility_date = "2026-05-03"
+workers_dev = true
+preview_urls = false
 
 [vars]
 WORKER_ID = "icloud-cf-mail"
-WORKER_URL = "https://icloud-cf-mail.YOUR_SUBDOMAIN.workers.dev"
-ADMIN_EMAIL = "your-forward-destination@icloud.com"
-API_KEY = "change-this-secret-key"
+WORKER_URL = "https://icloud-cf-mail.n5pskgzs9g.workers.dev"
+ADMIN_EMAIL = "tall-9rex@icloud.com"
 BLOCKED_DOMAINS = "spam.com,fake-mailer.com"
 SPAM_WORDS = "casino,crypto bonus,buy now,loan approved"
 MAX_MESSAGE_SIZE_BYTES = "10485760"
@@ -14,4 +15,4 @@ MAX_MESSAGE_SIZE_BYTES = "10485760"
 [[d1_databases]]
 binding = "MAIL_DB"
 database_name = "icloud-cf-mail_mail"
-database_id = "YOUR_DATABASE_ID"
+database_id = "8d50db18-9325-40c6-b359-7f5cd19691dc"

@@ -1,7 +1,7 @@
 WORKER_ID=icloud-cf-mail
 WORKER_URL=http://localhost:8787
 ADMIN_EMAIL=your-forward-destination@icloud.com
-API_KEY=change-this-secret-key
+VIEW_TOKEN=change-this-view-token
 BLOCKED_DOMAINS=spam.com,fake-mailer.com
 SPAM_WORDS=casino,crypto bonus,buy now,loan approved
 MAX_MESSAGE_SIZE_BYTES=10485760
