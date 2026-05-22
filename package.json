@@ -5,11 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "wrangler dev",
+    "dev:remote-db": "wrangler dev -e remote",
     "login": "wrangler login",
     "deploy": "wrangler deploy",
     "tail": "wrangler tail",
     "d1:create": "node scripts/create-d1.js",
     "d1:list": "wrangler d1 list",
+    "d1:migrate:local": "wrangler d1 migrations apply MAIL_DB --local",
     "d1:migrate": "wrangler d1 migrations apply MAIL_DB --remote",
     "test": "node scripts/test-worker.js",
     "check": "npm test && wrangler deploy --dry-run"

@@ -16,3 +16,17 @@ MAX_MESSAGE_SIZE_BYTES = "10485760"
 binding = "MAIL_DB"
 database_name = "icloud-cf-mail_mail"
 database_id = "8d50db18-9325-40c6-b359-7f5cd19691dc"
+
+[env.remote.vars]
+WORKER_ID = "icloud-cf-mail"
+WORKER_URL = "http://localhost:8787"
+ADMIN_EMAIL = "tall-9rex@icloud.com"
+BLOCKED_DOMAINS = "spam.com,fake-mailer.com"
+SPAM_WORDS = "casino,crypto bonus,buy now,loan approved"
+MAX_MESSAGE_SIZE_BYTES = "10485760"
+
+[[env.remote.d1_databases]]
+binding = "MAIL_DB"
+database_name = "icloud-cf-mail_mail"
+database_id = "8d50db18-9325-40c6-b359-7f5cd19691dc"
+remote = true

@@ -112,12 +112,41 @@ wrangler secret put VIEW_TOKEN
 npm install
 ```
 
+## Local Development
+
+Create a local env file:
+
+```bash
+cp .dev.vars.example .dev.vars
+```
+
+Then choose one mode:
+
+```bash
+npm run dev
+```
+
+- `npm run dev`: local Worker + local D1.
+
+```bash
+npm run dev:remote-db
+```
+
+- `npm run dev:remote-db`: the Worker still runs on `http://localhost:8787`, but `MAIL_DB` is connected to the remote Cloudflare D1 database using `remote = true`.
+
+Use `dev:remote-db` when you want local development and the Cloudflare D1 database to share the same data. Be careful: local writes and deletes will hit the real remote database.
+
 ## Create And Migrate D1
 
 ```bash
 npm run d1:create
+npm run d1:migrate:local
 npm run d1:migrate
 ```
+
+- `npm run d1:create`: create a new remote D1 database and update `wrangler.toml`.
+- `npm run d1:migrate:local`: apply migrations to local D1 used by `wrangler dev`.
+- `npm run d1:migrate`: apply migrations to the remote Cloudflare D1 database.
 
 The `d1:create` script creates a D1 database and replaces the `MAIL_DB` binding in `wrangler.toml`.
 

@@ -870,25 +870,25 @@ function renderMailPage(workerUrl) {
   <style>
     :root {
       color-scheme: light;
-      --bg: #f3f7f5;
-      --panel: rgba(255, 255, 255, 0.94);
+      --bg: #eff5f2;
+      --panel: rgba(255, 255, 255, 0.96);
       --panel-strong: #ffffff;
-      --panel-soft: #edf3f2;
-      --panel-soft-strong: #e3ece9;
+      --panel-soft: #f5faf8;
+      --panel-soft-strong: #e7f0ec;
       --ink: #132320;
-      --muted: #61706b;
-      --line: rgba(19, 35, 32, 0.12);
+      --muted: #5f6f69;
+      --line: rgba(19, 35, 32, 0.1);
       --accent: #176b7a;
       --accent-strong: #0e5461;
       --danger: #b42318;
-      --focus: rgba(23, 107, 122, 0.16);
-      --radius-xl: 30px;
+      --focus: rgba(23, 107, 122, 0.14);
+      --radius-xl: 28px;
       --radius-lg: 22px;
       --radius-md: 18px;
-      --radius-sm: 14px;
+      --radius-sm: 16px;
       --control-height: 56px;
-      --shadow: 0 22px 60px rgba(16, 31, 28, 0.12);
-      --shadow-soft: 0 14px 34px rgba(16, 31, 28, 0.08);
+      --shadow: 0 26px 70px rgba(16, 31, 28, 0.1);
+      --shadow-soft: 0 16px 36px rgba(16, 31, 28, 0.06);
     }
 
     * {
@@ -903,9 +903,9 @@ function renderMailPage(workerUrl) {
       margin: 0;
       min-height: 100vh;
       background:
-        radial-gradient(circle at top right, rgba(23, 107, 122, 0.12), transparent 24%),
-        radial-gradient(circle at left 18%, rgba(175, 210, 202, 0.26), transparent 30%),
-        linear-gradient(180deg, #f6f9f7 0%, #eef4f1 100%);
+        radial-gradient(circle at top right, rgba(23, 107, 122, 0.08), transparent 24%),
+        radial-gradient(circle at left 12%, rgba(177, 211, 204, 0.18), transparent 26%),
+        linear-gradient(180deg, #f8fbfa 0%, #eef4f1 100%);
       color: var(--ink);
       font-family: "Noto Sans", "Segoe UI", Arial, sans-serif;
       letter-spacing: -0.015em;
@@ -944,88 +944,112 @@ function renderMailPage(workerUrl) {
     }
 
     .page {
-      width: min(1240px, calc(100% - 32px));
+      width: min(1160px, calc(100% - 40px));
       margin: 0 auto;
-      padding: clamp(20px, 4vw, 40px) 0 56px;
+      padding: clamp(24px, 4vw, 42px) 0 56px;
     }
 
     .topbar {
       display: flex;
-      align-items: flex-start;
+      align-items: flex-end;
       justify-content: space-between;
-      gap: 24px;
-      margin-bottom: 22px;
+      gap: 28px;
+      margin-bottom: 26px;
+    }
+
+    .title-block {
+      display: grid;
+      gap: 12px;
+      min-width: 0;
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(3.2rem, 8vw, 5.4rem);
+      font-size: clamp(3rem, 6vw, 4.85rem);
       line-height: 0.92;
-      letter-spacing: -0.065em;
-      max-width: 8ch;
+      letter-spacing: -0.06em;
+      max-width: none;
+    }
+
+    .title-note {
+      margin: 0;
+      max-width: 48ch;
+      color: var(--muted);
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.55;
+      letter-spacing: -0.02em;
     }
 
     .status {
       flex: 0 0 auto;
-      border: 1px solid rgba(23, 107, 122, 0.14);
+      border: 1px solid rgba(23, 107, 122, 0.12);
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.82);
+      background: rgba(255, 255, 255, 0.92);
       color: var(--accent-strong);
-      padding: 12px 18px;
-      font-size: 1rem;
+      padding: 11px 16px;
+      font-size: 0.95rem;
       font-weight: 700;
       white-space: nowrap;
-      box-shadow: 0 8px 20px rgba(16, 31, 28, 0.06);
+      box-shadow: 0 10px 24px rgba(16, 31, 28, 0.05);
       backdrop-filter: blur(16px);
     }
 
     .search-panel {
       position: relative;
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.62);
+      border: 1px solid rgba(255, 255, 255, 0.7);
       border-radius: var(--radius-xl);
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(246, 250, 248, 0.92));
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 251, 249, 0.95));
       box-shadow: var(--shadow);
-      padding: clamp(22px, 3vw, 34px);
+      padding: clamp(22px, 3vw, 30px);
       backdrop-filter: blur(18px);
     }
 
     .search-panel::after {
       content: "";
       position: absolute;
-      inset: 0 auto auto 58%;
-      width: 240px;
-      height: 240px;
+      inset: -32px -28px auto auto;
+      width: 260px;
+      height: 260px;
       border-radius: 999px;
-      background: radial-gradient(circle, rgba(23, 107, 122, 0.1), transparent 68%);
+      background: radial-gradient(circle, rgba(23, 107, 122, 0.08), transparent 68%);
       pointer-events: none;
-      transform: translateY(-44%);
     }
 
     .search-form {
       position: relative;
       z-index: 1;
       display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.86fr);
-      gap: 18px;
-      align-items: stretch;
+      grid-template-columns: minmax(0, 1.55fr) minmax(320px, 0.9fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .search-main {
+      min-width: 0;
     }
 
     .field {
       display: grid;
-      gap: 10px;
+      gap: 12px;
       min-width: 0;
     }
 
     .field-stack {
       display: grid;
-      gap: 18px;
-      align-content: stretch;
+      gap: 16px;
+      align-content: start;
+      padding: 22px;
+      border: 1px solid rgba(19, 35, 32, 0.08);
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(245, 250, 248, 0.98), rgba(239, 246, 243, 0.94));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
     }
 
     .field-label {
       color: var(--muted);
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 800;
       letter-spacing: 0.06em;
       text-transform: uppercase;
@@ -1036,7 +1060,7 @@ function renderMailPage(workerUrl) {
       width: 100%;
       border: 1px solid rgba(19, 35, 32, 0.1);
       border-radius: var(--radius-md);
-      background: rgba(255, 255, 255, 0.92);
+      background: rgba(255, 255, 255, 0.96);
       color: var(--ink);
       outline: none;
       font-size: 16px;
@@ -1060,7 +1084,7 @@ function renderMailPage(workerUrl) {
     }
 
     textarea {
-      min-height: 166px;
+      min-height: 176px;
       padding: 16px 18px;
       line-height: 1.55;
       font-weight: 600;
@@ -1078,8 +1102,8 @@ function renderMailPage(workerUrl) {
 
     .field-note {
       color: var(--muted);
-      font-size: 0.9rem;
-      font-weight: 600;
+      font-size: 0.88rem;
+      font-weight: 550;
       line-height: 1.45;
       text-transform: none;
       max-width: 64ch;
@@ -1087,7 +1111,7 @@ function renderMailPage(workerUrl) {
 
     .action-row {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
       gap: 12px;
       align-self: end;
     }
@@ -1119,16 +1143,16 @@ function renderMailPage(workerUrl) {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
-      margin-top: 18px;
+      margin-top: 16px;
     }
 
     .meta-chip {
       display: grid;
       gap: 6px;
-      padding: 14px 16px;
+      padding: 12px 14px;
       border: 1px solid rgba(19, 35, 32, 0.08);
       border-radius: var(--radius-sm);
-      background: rgba(255, 255, 255, 0.56);
+      background: rgba(255, 255, 255, 0.84);
     }
 
     .meta-label {
@@ -1148,12 +1172,15 @@ function renderMailPage(workerUrl) {
     }
 
     .message {
-      margin-top: 16px;
+      position: relative;
+      z-index: 1;
+      margin-top: 18px;
       border-radius: var(--radius-lg);
-      background: linear-gradient(180deg, rgba(237, 243, 242, 0.9), rgba(227, 236, 233, 0.9));
+      border: 1px solid rgba(19, 35, 32, 0.06);
+      background: linear-gradient(180deg, rgba(243, 248, 246, 0.96), rgba(234, 242, 238, 0.96));
       color: var(--muted);
-      padding: 16px 18px;
-      font-size: 1rem;
+      padding: 15px 16px;
+      font-size: 0.98rem;
       font-weight: 600;
       line-height: 1.5;
     }
@@ -1236,7 +1263,7 @@ function renderMailPage(workerUrl) {
       }
 
       .field-stack {
-        grid-template-columns: 1fr;
+        padding: 18px;
       }
     }
 
@@ -1255,7 +1282,11 @@ function renderMailPage(workerUrl) {
 
       h1 {
         max-width: none;
-        font-size: clamp(2.8rem, 17vw, 4.4rem);
+        font-size: clamp(2.9rem, 17vw, 4.2rem);
+      }
+
+      .title-note {
+        font-size: 0.94rem;
       }
 
       .status {
@@ -1285,17 +1316,22 @@ function renderMailPage(workerUrl) {
 <body>
   <main class="page">
     <section class="topbar" aria-labelledby="page-title">
-      <h1 id="page-title">iCloud Mail</h1>
+      <div class="title-block">
+        <h1 id="page-title">iCloud Mail</h1>
+        <p class="title-note">Tra cứu nhiều alias iCloud trong một lần, làm mới nhanh ngay trên web mà không phải đổi qua từng địa chỉ.</p>
+      </div>
       <div class="status" data-auto-status>Tự làm mới: tắt</div>
     </section>
 
     <section class="search-panel">
       <form class="search-form" data-mail-form>
-        <label class="field">
-          <span class="field-label">Email iCloud</span>
-          <textarea data-mail-input name="email" placeholder="farrago.mull-1u@icloud.com&#10;user+tag@icloud.com, another-alias@icloud.com" autocomplete="off" autocapitalize="none" spellcheck="false" required></textarea>
-          <span class="field-note">Nhập nhiều email, mỗi dòng một email hoặc ngăn cách bằng dấu phẩy.</span>
-        </label>
+        <div class="search-main">
+          <label class="field">
+            <span class="field-label">Email iCloud</span>
+            <textarea data-mail-input name="email" placeholder="farrago.mull-1u@icloud.com&#10;user+tag@icloud.com, another-alias@icloud.com" autocomplete="off" autocapitalize="none" spellcheck="false" required></textarea>
+            <span class="field-note">Nhập nhiều email, mỗi dòng một email hoặc ngăn cách bằng dấu phẩy.</span>
+          </label>
+        </div>
         <div class="field-stack">
           <label class="field">
             <span class="field-label">Mã truy cập</span>
